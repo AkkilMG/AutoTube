@@ -4,5 +4,5 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Mail
-email = os.getenv("email")
+mail = os.getenv("mail")
 password = os.getenv("password")
