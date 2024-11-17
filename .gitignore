@@ -6,6 +6,18 @@ __pycache__/
 # C extensions
 *.so
 
+#testing
+test
+test/
+/autotube
+/autotube/
+/files/
+/files/*
+files
+files/test/
+/driver
+driver
+
 # Distribution / packaging
 .Python
 build/

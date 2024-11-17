@@ -37,7 +37,7 @@ app.add_middleware(
 async def home():
     return JSONResponse({"success": True})
 
-app.include_router(api_router, prefix="/api/")
+app.include_router(api_router, prefix="/api")
 
 if __name__ == "__main__":
     try:
