@@ -1,15 +1,11 @@
 
-
-
-# import asyncio
-from time import sleep
-from selenium.webdriver.common.by import By
 import requests
 import json
+from config import GEMINI_KEY
 
 async def gemini(text):
     try:
-        url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyBJuk3Nrc3bNPwGoZYdJWlN70RIfdWQWIw"
+        url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key={GEMINI_KEY}"
         headers = {"Content-Type": "application/json"}
         data = {
             "contents": [{ "parts": [
