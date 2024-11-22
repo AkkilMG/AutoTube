@@ -6,6 +6,7 @@ from selenium.webdriver.support import expected_conditions as EC
 async def youtubeUploadVideo(driver, data):
     try:
         sleep(2)
+        print("+++++++++++++++ Enter youtube studio ++++++++++++++++")
         driver.get("https://studio.youtube.com/channel/UCDAylnB8oNzBBCiS8w_m3ng/videos?d=ud")
         WebDriverWait(driver, 10).until(lambda d: d.execute_script('return document.readyState') == 'complete')
         sleep(5)
@@ -47,18 +48,28 @@ async def youtubeUploadVideo(driver, data):
         off_radio_buttons[1].click()
         print('+++++++++++++++ Clicked the second offRadio button +++++++++++++++')
         
-        sleep(1)
+        sleep(4)
         next_button = WebDriverWait(driver, 10).until(
             EC.presence_of_all_elements_located((By.XPATH, "//button[contains(@class, 'ytcp-button-shape-impl ytcp-button-shape-impl--filled ytcp-button-shape-impl--mono ytcp-button-shape-impl--size-m')]"))
         )
         next_button[0].click()
 
-        sleep(1)
+        sleep(4)
         next_button = WebDriverWait(driver, 10).until(
             EC.presence_of_all_elements_located((By.XPATH, "//button[contains(@class, 'ytcp-button-shape-impl ytcp-button-shape-impl--filled ytcp-button-shape-impl--mono ytcp-button-shape-impl--size-m')]"))
         )
         next_button[0].click()
         print('+++++++++++++++ Clicked the next button +++++++++++++++')
+
+        try:
+            sleep(4)
+            next_button = WebDriverWait(driver, 10).until(
+                EC.presence_of_all_elements_located((By.XPATH, "//button[contains(@class, 'ytcp-button-shape-impl ytcp-button-shape-impl--filled ytcp-button-shape-impl--mono ytcp-button-shape-impl--size-m')]"))
+            )
+            next_button[0].click()
+            print('+++++++++++++++ Clicked the next button +++++++++++++++')
+        except Exception:
+            pass
 
         sleep(1)
         off_radio_buttons = WebDriverWait(driver, 10).until(
@@ -74,7 +85,17 @@ async def youtubeUploadVideo(driver, data):
         save_button[1].click()
         print('+++++++++++++++ Clicked the save button +++++++++++++++')
 
-        sleep(20)
+        sleep(1)
+        try:
+            close_button = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, "//button[contains(@class, 'ytcp-button-shape-impl ytcp-button-shape-impl--tonal ytcp-button-shape-impl--mono ytcp-button-shape-impl--size-m') and .//span[contains(@class, 'ytcp-button-shape-impl__button-text-content') and text()='Close']]"))
+            )
+            close_button.click()
+            print('+++++++++++++++ Clicked the close button +++++++++++++++')
+        except Exception as e:
+            print(f"Exception occurred while clicking close button: {e}")
+
+        sleep(100)
         return { 'success': True, 'driver': driver }
     except Exception as e:
         print(f"Exception occurred (youtubeUploadVideo): {e}")
